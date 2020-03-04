@@ -1,0 +1,62 @@
+/*
+** Luis Zapata
+**
+**
+**
+**This program uses the Index of Coincidence 
+**computed from file given on the command line to decode
+**a cipher
+*/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main()
+{
+    int chArray[26] = {0};
+    double final = 0;
+    double den = 0; /*denominator   */
+    double num = 0; /* numerator  */
+    double n, IC = 0;
+  
+
+    int character;
+
+    while((character = getchar()) != EOF)
+    {
+
+        if(isalpha(character))
+        {
+            chArray[tolower(character) - 'a']++;
+            n++;
+        }
+
+
+    }
+
+       for( int i = 0; i < 26; i++ )
+       {
+
+           printf("%c occured %d times\n", 'a'+i, chArray[i]);
+
+           num = chArray[i] * (chArray[i] - 1);
+           final += num;
+
+       }
+
+       den = (n * (n-1))/26;
+
+       //IC = (numerator / (n * n - 1) / 26);
+       printf("The denom %lf\n", den);
+       printf("The numerat %lf\n", final);
+
+       IC = (final / den);
+
+
+    printf("IC = %lf\n", IC);
+
+
+    return 0;
+}
